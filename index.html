@@ -7,26 +7,30 @@
     <title>Document</title>
 </head>
 <body>
+    <video id="video" autoplay></video>
+    <button id="capture">Capture</button>
+    <canvas id="canvas" width="480" height="320"></canvas>
+
     <script>
-        const video = document.getElementById('video');
-        const captureButton = document.getElementById('capture');
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
-      
-        // 啟動相機
-        navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
-          .then((stream) => {
-            video.srcObject = stream;
-          });
-      
-        // 捕獲影像
-        captureButton.addEventListener('click', () => {
-          context.drawImage(video, 0, 0, canvas.width, canvas.height);
-          // 儲存影像
-          const imgData = canvas.toDataURL("image/png");
-          localStorage.setItem('capturedImage', imgData);
+      const video = document.getElementById('video');
+      const captureButton = document.getElementById('capture');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+    
+      // 啟動相機
+      navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+        .then((stream) => {
+          video.srcObject = stream;
         });
-      </script>
+    
+      // 捕獲影像
+      captureButton.addEventListener('click', () => {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // 儲存影像
+        const imgData = canvas.toDataURL("image/png");
+        localStorage.setItem('capturedImage', imgData);
+      });
+    </script>
 
 <video id="video" autoplay></video>
 <button id="capture">Capture</button>
