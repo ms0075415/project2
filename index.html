@@ -9,7 +9,7 @@
         #videoContainer {
             position: relative;
             width: 80%;
-            padding-bottom: 175%;
+            padding-bottom: 120%;
             background: black;
             overflow: hidden;
             margin: auto;   
@@ -22,6 +22,15 @@
             height: 100%;
             object-fit: cover;
         }
+        #capture {
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +38,9 @@
     <div id="videoContainer">
         <video id="video" autoplay playsInline></video>
     </div>
-    <button id="capture">Capture</button>
+    <div style="text-align: center;">
+        <button id="capture" >擷取</button>
+    </div>
     <canvas id="canvas" style="display: none;"></canvas>
     <a id="downloadLink" download="captured.png" style="display: none;">Download</a>
 
@@ -54,7 +65,7 @@
           // 儲存影像
           const imgData = canvas.toDataURL("image/png");
           downloadLink.href = imgData;
-          downloadLink.style.display = 'block';
+          downloadLink.click();  // 自動觸發點擊事件
         });
     </script>
 
